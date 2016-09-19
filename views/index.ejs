@@ -1,0 +1,17 @@
+<html ng-app="TestApp">
+    <head>
+        <link href="/assets/style.css" type="text/css" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    </head>
+    
+    <body ng-controller="MainController as vm">
+        <form method="POST" action="/login">
+            Username: <input type="text" id="username" name="username"></br>
+            Password: <input type="text" id="password" name="password"></br>
+            <input type="submit" value="Submit">
+        </form>
+        
+        <script src="/assets/js/app.js"></script>
+    </body>
+</html>

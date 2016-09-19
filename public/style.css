@@ -1,0 +1,12 @@
+body{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#preview{
+    background:rgba(0, 0, 0, 0);
+    border: none;
+    outline: none;
+    width:30%;
+}
+
+#postInput{width:30%; height: 50px;}

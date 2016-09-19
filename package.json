@@ -1,0 +1,21 @@
+{
+  "name": "mean-project",
+  "version": "1.0.0",
+  "description": "a very mean project",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "ejs": "^2.5.2",
+    "express": "^4.14.0",
+    "moment": "^2.15.0",
+    "mongoose": "^4.6.0"
+  },
+  "devDependencies": {
+    "jasmine-node": "^1.14.5"
+  }
+}
