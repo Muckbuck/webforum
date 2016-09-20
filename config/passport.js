@@ -1,6 +1,6 @@
 var localStrategy = require('passport-local');
 var userModel = require('../models/userModel');
-
+var regExp = "^[A-Za-z0-9!_.-]{8,12}$";
 module.exports = function(passport){
     passport.serializeUser(function(user, done){
         done(null, user.id);
@@ -22,9 +22,10 @@ module.exports = function(passport){
             userModel.findOne({ 'username': username }, function(err, user){
                 if(err)
                     return done(err);
+                if(!password.match(regExp))
+                    return done(null, false);
                 if(user){
-                    console.log(req.flash('signupMessage'));
-                    return done(null, false, req.flash('signupMessage, Username taken'));
+                    return done(null, false);
                 }else{
                     newUser = new userModel();
 
