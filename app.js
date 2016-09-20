@@ -1,36 +1,41 @@
 var express = require('express');
 var app = express()
-
-
+var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
+var flash = require('connect-flash');
+var passport = require('passport');
+var session = require('express-session');
 var mongoose = require('mongoose');
-var dbConf = require('./config/dbConf');
+var settings = require('./config/settings');
 
 
 //sets up a connection to the database
-mongoose.connect(dbConf.dev.URL);
+mongoose.connect(settings.dev.URL);
 
-
-// controllers
-var indexController = require('./controllers/indexController');
-var userController = require('./controllers/userController');
-var apiController = require('./controllers/apiController');
-var threadController = require('./controllers/threadController');
-
-// either set from enviroment variable or if null, then 3000
-var port = dbConf.deploy.PORT || dbConf.dev.PORT;
-
-// express listening to earlier declared port
-app.listen(port);
-
-// maps the /assets/-path to the public folder to serve the client with static files
-app.use('/assets/', express.static(__dirname + '/public'));
+require('./config/passport')(passport, app, session); // pass passport for configuration
+app.use(cookieParser()); // read cookies (needed for auth)
+app.use(bodyParser()); // get information from html forms
 
 // sets the view engine
 app.set('view engine', 'ejs')
 
-// invoking the controllers
-indexController(app);
-userController(app);
-apiController(app);
+// middlewear required for passport
+app.use(session({ secret: settings.dev.SECRET, cookie: { maxAge : 900000 } })); // setting cookie secret and maxage
+app.use(passport.initialize()); 
+app.use(passport.session()); // persistent login sessions
 
 
+
+// // controllers
+require('./controllers/apiController.js')(app);
+require('./controllers/indexController.js')(app);
+require('./controllers/userController.js')(app, passport); 
+
+// maps the /assets/-path to the public folder to serve the client with static files
+app.use('/assets/', express.static(__dirname + '/public'));
+
+// either set from enviroment variable or if null, then 3000
+var port = settings.deploy.PORT || settings.dev.PORT;
+
+// express listening to earlier declared port
+app.listen(port);
