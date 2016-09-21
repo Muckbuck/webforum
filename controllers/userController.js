@@ -23,7 +23,7 @@ module.exports = function(app, Schema){
     app.post('/signup', passport.authenticate('local-signup', {
         successRedirect : '/profile',
         failureRedirect : '/signup', 
-        failureFlash : true
+        
     }));
     app.get('/login', function(req, res, next){
         res.render('login.ejs');
@@ -33,27 +33,21 @@ module.exports = function(app, Schema){
     app.post('/login', passport.authenticate('local-login', {
         successRedirect : '/profile', 
         failureRedirect : '/login', 
-        failureFlash : true 
+         
     }));
     app.get('/profile', isLoggedIn, function(req, res) {
         
         var user = req.user;
         var username = user.username;
 
-        // pass the username currently logged in user
         res.render('profile', {user : 'username'});
     });
-
+    //checking if the user is logged in with a session
     function isLoggedIn(req, res, next) {
-
-   
     if (req.isAuthenticated())
         return next();
-
-   
-    res.send('You are not logged in');
+    res.redirect('/');
     }
-
     //call req.logout to end session and redirect to root
     app.get('/logout', function(req, res) {
         req.logout();

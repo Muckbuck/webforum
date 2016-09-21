@@ -5,9 +5,11 @@ var Schema = mongoose.Schema;
 var threadSchema = new Schema({
     title: String,
     threadStart: String,
-    votes: {upvotes: String, downvotes: String}
+    username: String,
+    userId: String
+    
 });
-var Thread = mongoose.model('Thread', threadSchema);
-module.exports = Thread;
+module.exports = mongoose.model('Thread', threadSchema);
+
     
     

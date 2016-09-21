@@ -29,6 +29,7 @@ app.use(passport.session()); // persistent login sessions
 require('./controllers/apiController.js')(app);
 require('./controllers/indexController.js')(app);
 require('./controllers/userController.js')(app, passport); 
+require('./controllers/threadController.js')(app, passport); 
 
 // maps the /assets/-path to the public folder to serve the client with static files
 app.use('/assets/', express.static(__dirname + '/public'));
