@@ -21,7 +21,7 @@ module.exports = function(app, Schema){
     });
     //route logic for posting a user to the db
     app.post('/signup', passport.authenticate('local-signup', {
-        successRedirect : '/profile',
+        successRedirect : '/',
         failureRedirect : '/signup', 
         
     }));
@@ -31,8 +31,8 @@ module.exports = function(app, Schema){
     });
     //route logic for login in a user
     app.post('/login', passport.authenticate('local-login', {
-        successRedirect : '/profile', 
-        failureRedirect : '/login', 
+        successRedirect : '/', 
+        failureRedirect : '/', 
          
     }));
     app.get('/profile', isLoggedIn, function(req, res) {

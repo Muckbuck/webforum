@@ -1,0 +1,10 @@
+body{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.navbar.navbar-default{background-color:#373737;}
+.col-md-2{background-color: #FAFAFF; padding: 2%; margin: 0;}
+
+.col-md-10{padding: 2%;} 
+
+
+.row{display: flex; margin-top:-1%;}

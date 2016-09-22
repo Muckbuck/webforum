@@ -1,34 +1,28 @@
 <!doctype html>
 <html>
-<head>
-    <title>Node Authentication</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-    <style>
-        
-    </style>
-</head>
+<% include ./partials/head %>
 <body>
-<div class="container">
-
-    <div class="page-header text-center">
-        <h1><span class="fa fa-anchor"></span> Profile Page</h1>
-    </div>
-
-    <div class="row">
-
-      
-        <div class="col-sm-6">
-            <div class="well">
-                <h3><span class="fa fa-user"></span> Local</h3>
-
-                    <p>
-                        
-                        <%= user.username %>
-                    </p>
-
-            </div>
+    <% include ./partials/header %>
+    <div class="container">
+        
+        <div class="page-header text-center">
+            <h1><span class="fa fa-anchor"></span> Profile Page</h1>
         </div>
+
+        <div class="row">
+
+        
+            <div class="col-sm-6">
+                <div class="well">
+                    <h3><span class="fa fa-user"></span> Local</h3>
+
+                        <p>
+                            
+                            <%= user.username %>
+                        </p>
+
+                </div>
+            </div>
 
     </div>
 

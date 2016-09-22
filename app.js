@@ -19,7 +19,10 @@ app.use(bodyParser()); // get information from html forms
 app.set('view engine', 'ejs')
 
 // middlewear required for passport
-app.use(session({ secret: settings.dev.SECRET, cookie: { maxAge : 900000 } })); // setting cookie secret and maxage
+app.use(session(
+    {secret: settings.dev.SECRET,
+     resave: true, saveUninitialized: true,
+     cookie: { maxAge : 900000 } })); 
 app.use(passport.initialize()); 
 app.use(passport.session()); // persistent login sessions
 
