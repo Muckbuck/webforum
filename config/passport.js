@@ -1,5 +1,5 @@
 var localStrategy = require('passport-local');
-var userModel = require('../models/userModel');
+var userModel = require('../models/user');
 var regExp = "^[A-Za-z0-9!_.-]{8,12}$";
 module.exports = function(passport){
     passport.serializeUser(function(user, done){

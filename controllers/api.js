@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var userModel = require('../models/userModel');
+var userModel = require('../models/user');
 
 module.exports = function(app){
     app.get('/api/user', function(req, res){

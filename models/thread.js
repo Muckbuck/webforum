@@ -6,7 +6,8 @@ var threadSchema = new Schema({
     title: String,
     threadStart: String,
     username: String,
-    userId: String
+    userId: String,
+    comments : [{ type: Schema.Types.ObjectId, ref: 'Comment' }]
     
 });
 module.exports = mongoose.model('Thread', threadSchema);

@@ -8,3 +8,5 @@ body{
 
 
 .row{display: flex; margin-top:-1%;}
+
+.table.table-striped td{width:5%; }

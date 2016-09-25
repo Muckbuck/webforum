@@ -7,12 +7,35 @@
     
             <div class="row">
                 <div class="col-md-10 initial">
-                    <table class="table table-striped">
-                        <% for(var i=0; i<parsedThreads.length; i++) {%>
+                    
                         
-                        <tr><td><label><a href="/thread/<%= parsedThreads[i]._id %>"><%= parsedThreads[i].title %></a></label></td><td><a href="/user/<%= parsedThreads[i].username %>"><%= parsedThreads[i].username %></a></td></tr>
-                        <% } %>
-                    </table>
+                        
+                        <label><%= parsedThread.title %></label>
+                        <div class="well">
+                        <table class="table table-striped"><tr><td><%= parsedThread.threadStart %></div></td></tr></table>
+                        
+
+                            
+                            <% for(var i=0; i<comments.length; i++) {%>
+                                <%= comments[i].commentBody %>
+                                
+                            <% } %>
+                            </div>
+                            
+                     
+                        <br>
+                        <br>
+                        <br>
+                        <form action="/comment/<%= parsedThread._id %>" method="post">
+                            <div class="form-group">
+                                <textarea class="form-control" placeholder="Write a comment" name="commentBody" rows="5"></textarea>
+                            </div>
+                            
+
+                            <button type="submit" class="btn btn-lg">Submit</button>
+                        </form>
+                     
+                  
                 </div>
                 <div class="col-md-2 flex1">
 

@@ -1,10 +1,10 @@
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var urlencodedParser = bodyParser.urlencoded({extended: false});
-var userModel = require('../models/userModel');
+var userModel = require('../models/user');
 var passport = require('passport');
 var flash = require('connect-flash');
-
+var isLoggedIn = require('../config/validation').isLoggedIn
 var bcrypt = require('bcrypt');
 const saltRounds = 10;
 
@@ -42,12 +42,7 @@ module.exports = function(app, Schema){
 
         res.render('profile', {user : 'username'});
     });
-    //checking if the user is logged in with a session
-    function isLoggedIn(req, res, next) {
-    if (req.isAuthenticated())
-        return next();
-    res.redirect('/');
-    }
+
     //call req.logout to end session and redirect to root
     app.get('/logout', function(req, res) {
         req.logout();

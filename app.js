@@ -11,34 +11,35 @@ var settings = require('./config/settings');
 //sets up a connection to the database
 mongoose.connect(settings.dev.URL);
 
-require('./config/passport')(passport, app, session); // pass passport for configuration
+require('./config/passport')(passport, app, session); // requiring the settings file for passport auth
 app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser()); // get information from html forms
 
-// sets the view engine
-app.set('view engine', 'ejs')
+
+app.set('view engine', 'ejs')// sets the view engine
 
 // middlewear required for passport
 app.use(session(
     {secret: settings.dev.SECRET,
-     resave: true, saveUninitialized: true,
-     cookie: { maxAge : 900000 } })); 
+     resave: true,
+     saveUninitialized: true,
+     cookie: { maxAge : 900000 } }));// ms to expire  
 app.use(passport.initialize()); 
-app.use(passport.session()); // persistent login sessions
+app.use(passport.session());//keeps the session running for as long as the maxAge is set for
+
+//controllers
+require('./controllers/api.js')(app);
+require('./controllers/index.js')(app);
+require('./controllers/user.js')(app, passport); 
+require('./controllers/comment.js')(app, passport); 
+require('./controllers/thread.js')(app, passport); 
 
 
 
-// // controllers
-require('./controllers/apiController.js')(app);
-require('./controllers/indexController.js')(app);
-require('./controllers/userController.js')(app, passport); 
-require('./controllers/threadController.js')(app, passport); 
+app.use('/assets/', express.static(__dirname + '/public'));// maps the /assets/-path to the public folder to serve the client with static files
 
-// maps the /assets/-path to the public folder to serve the client with static files
-app.use('/assets/', express.static(__dirname + '/public'));
 
-// either set from enviroment variable or if null, then 3000
-var port = settings.deploy.PORT || settings.dev.PORT;
+var port = settings.deploy.PORT || settings.dev.PORT;// either set from enviroment variable or if null, then 3000
 
-// express listening to earlier declared port
-app.listen(port);
+
+app.listen(port);//express listening on earlier declared port

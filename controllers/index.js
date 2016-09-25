@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var threadModel = require('../models/threadModel');
+var threadModel = require('../models/thread');
 
 
 module.exports = function(app){
@@ -8,8 +8,8 @@ module.exports = function(app){
         threadModel.find({}, function(err, threads){
             if(err)
                 throw err;
-            var stringifyiedThreads = JSON.stringify(threads);
-            var parsedThreads = JSON.parse(stringifyiedThreads);
+            var stringifiedThreads = JSON.stringify(threads);
+            var parsedThreads = JSON.parse(stringifiedThreads);
             
             for(i=0; i<parsedThreads.length; i++){
                 console.log(parsedThreads[i].title);
