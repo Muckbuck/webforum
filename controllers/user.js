@@ -31,7 +31,7 @@ module.exports = function(app, Schema){
     });
     //route logic for login in a user
     app.post('/login', passport.authenticate('local-login', {
-        successRedirect : '/', 
+        successRedirect : 'back', 
         failureRedirect : '/', 
          
     }));
@@ -45,8 +45,10 @@ module.exports = function(app, Schema){
 
     //call req.logout to end session and redirect to root
     app.get('/logout', function(req, res) {
-        req.logout();
-        res.redirect('/');
+        req.session.destroy(function(){
+            res.redirect('back');
+        });
+        
     });
 }
 

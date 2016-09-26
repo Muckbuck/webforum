@@ -2,9 +2,11 @@ var mongoose = require('mongoose');
 var threadModel = require('../models/thread');
 
 
+
 module.exports = function(app){
     //routing for the root path
     app.get('/', function(req, res){
+        var isAuth = req.isAuthenticated()
         threadModel.find({}, function(err, threads){
             if(err)
                 throw err;
@@ -14,7 +16,7 @@ module.exports = function(app){
             for(i=0; i<parsedThreads.length; i++){
                 console.log(parsedThreads[i].title);
             }
-            res.render('index', {parsedThreads: parsedThreads});
+            res.render('index', {parsedThreads: parsedThreads, isAuth: isAuth});
         })
         
     });

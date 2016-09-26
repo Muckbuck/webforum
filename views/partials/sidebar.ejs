@@ -1,0 +1,27 @@
+<div class="col-md-2">
+                    <% if(!isAuth){ %>
+                        
+                    <form action="/login" method="post">
+                        <div class="form-group">
+                            
+                            <input type="text" class="form-control" name="username" placeholder="Username">
+                        </div>
+                        <div class="form-group">
+                           
+                            <input type="password" class="form-control" name="password" placeholder="Password">
+                        </div>
+
+                        <button type="submit" class="btn btn-lg">Login</button>
+                    </form>
+                    <hr>
+                    <a href="/signup">Create a free account</a><br>
+                    <a href="/#">Forgot account details?</a>
+                    <hr>
+                    <% }else if(isAuth){ %>
+                    <a href="/newthread"><button class="btn btn-lg">Create a new thread <span class="glyphicon glyphicon-plus-sign"></span></button></a><br><br>
+                    <a href="/newthread"><button class="btn btn-lg">Create a new subforum <span class="glyphicon glyphicon-plus-sign"></span></button></a><br><br>
+                    <a href="/Logout"><button class="btn btn-lg">Logout</button></a>
+                    <%}%>
+                    
+                  
+                </div>

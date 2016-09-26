@@ -4,7 +4,9 @@ var Schema = mongoose.Schema;
 var commentSchema = new Schema({
     commentBody: String,
     userID: String,
-    thread : [{ type: String, ref: 'Thread' }]
+    username: String,
+    thread : [{ type: String, ref: 'Thread' }],
+    parentComment : [{ type: String, ref: 'Comment' }]
 
     
 });

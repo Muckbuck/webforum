@@ -10,32 +10,11 @@
                     <table class="table table-striped">
                         <% for(var i=0; i<parsedThreads.length; i++) {%>
                         
-                        <tr><td><label><a href="/thread/<%= parsedThreads[i]._id %>"><%= parsedThreads[i].title %></a></label></td><td><a href="/user/<%= parsedThreads[i].username %>"><%= parsedThreads[i].username %></a></td></tr>
+                        <tr><td><label><a href="/thread?threadId=<%= parsedThreads[i]._id %>"><%= parsedThreads[i].title %></a></label></td><td><a href="/user/<%= parsedThreads[i].username %>"><%= parsedThreads[i].username %></a></td></tr>
                         <% } %>
                     </table>
                 </div>
-                <div class="col-md-2 flex1">
-
-                    <form action="/login" method="post">
-                        <div class="form-group">
-                            
-                            <input type="text" class="form-control" name="username" placeholder="Username">
-                        </div>
-                        <div class="form-group">
-                           
-                            <input type="password" class="form-control" name="password" placeholder="Password">
-                        </div>
-
-                        <button type="submit" class="btn btn-lg">Login</button>
-                    </form>
-                    <hr>
-                    <a href="/signup">Create a free account</a><br>
-                    <a href="/#">Forgot account details?</a>
-                    <hr>
-                    <a href="/newthread"><button class="btn btn-lg">Create a new thread <span class="glyphicon glyphicon-plus-sign"></span></button></a><br><br>
-                    <a href="/newthread"><button class="btn btn-lg">Create a new subforum <span class="glyphicon glyphicon-plus-sign"></span></button></a>
-                    
-                </div>
+                <% include ./partials/sidebar %>
             </div>
         
 

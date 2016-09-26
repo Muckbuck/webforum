@@ -12,9 +12,10 @@ module.exports = function(app){
         res.render('newthread');
     });
 
-    app.get('/thread/:id', function(req, res){
-        var wildcard = req.params.id;
-        threadModel.findOne({'_id': wildcard}, function(err, thread){
+    app.get('/thread', function(req, res){
+        var query = req.query.threadId;
+        var isAuth = req.isAuthenticated()
+        threadModel.findOne({'_id': query}, function(err, thread){
             if(err)
                 return err;
             if(!thread)
@@ -23,11 +24,11 @@ module.exports = function(app){
             var parsedThread = JSON.parse(stringifiedThread);
 
             commentModel
-            .find({ thread: wildcard })
+            .find({ thread: query })
             .exec(function (err, comments) {
             if (err) return handleError(err);
-            console.log('The stories are an array: ', comments);
-            res.render('displayThread', {parsedThread: parsedThread, comments: comments});
+            
+            res.render('displayThread', {parsedThread: parsedThread, comments: comments, isAuth: isAuth});
             
             })
           

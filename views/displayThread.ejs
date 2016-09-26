@@ -2,63 +2,45 @@
 <html>
     <% include ./partials/head %>
     <body>
-        <% include ./partials/header %>
+    <% include ./partials/header %>
 
     
-            <div class="row">
+        
                 <div class="col-md-10 initial">
+                    <div id="wrapper">
                     
-                        
-                        
                         <label><%= parsedThread.title %></label>
-                        <div class="well">
-                        <table class="table table-striped"><tr><td><%= parsedThread.threadStart %></div></td></tr></table>
+                        <table class="table table-striped"><tr><td><%= parsedThread.threadStart %></td></tr></table>
                         
-
-                            
-                            <% for(var i=0; i<comments.length; i++) {%>
-                                <%= comments[i].commentBody %>
-                                
-                            <% } %>
-                            </div>
-                            
-                     
-                        <br>
-                        <br>
-                        <br>
-                        <form action="/comment/<%= parsedThread._id %>" method="post">
+                          <form action="/comment?commentId=<%= parsedThread._id %>" method="post">
                             <div class="form-group">
                                 <textarea class="form-control" placeholder="Write a comment" name="commentBody" rows="5"></textarea>
                             </div>
                             
 
                             <button type="submit" class="btn btn-lg">Submit</button>
-                        </form>
+                        </form>  
                      
-                  
-                </div>
-                <div class="col-md-2 flex1">
+                        <br>
+                        <br>
+                        <br>
+                        
+                        </div>
+                        
+                        
+                        
 
-                    <form action="/login" method="post">
-                        <div class="form-group">
                             
-                            <input type="text" class="form-control" name="username" placeholder="Username">
-                        </div>
-                        <div class="form-group">
-                           
-                            <input type="password" class="form-control" name="password" placeholder="Password">
-                        </div>
-
-                        <button type="submit" class="btn btn-lg">Login</button>
-                    </form>
-                    <hr>
-                    <a href="/signup">Create a free account</a><br>
-                    <a href="/#">Forgot account details?</a>
-                    <hr>
-                    <a href="/newthread"><button class="btn btn-lg">Create a new thread <span class="glyphicon glyphicon-plus-sign"></span></button></a><br><br>
-                    <a href="/newthread"><button class="btn btn-lg">Create a new subforum <span class="glyphicon glyphicon-plus-sign"></span></button></a>
-                    
-                </div>
+                            <% for(var i=0; i<comments.length; i++) {%>
+                                <div class="well"><%= comments[i].commentBody %></div>
+                                
+                            <% } %>
+                            
+                        
+                  
+                
+            </div>
+                <% include ./partials/sidebar %>
             </div>
         
 
