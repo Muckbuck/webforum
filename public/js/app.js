@@ -1,8 +1,6 @@
-angular.module('TestApp', []);
-
-angular.module('TestApp').controller('MainController', ctrFunc);
-
-function ctrFunc(){
-    this.blogpost = '';
+$(document).on('click', '.replyButton', function () {
     
-}
+    $(this).closest('.well').find('.form-group.reply').slideToggle();
+
+});
+

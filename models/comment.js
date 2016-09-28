@@ -6,7 +6,7 @@ var commentSchema = new Schema({
     userID: String,
     username: String,
     thread : [{ type: String, ref: 'Thread' }],
-    parentComment : [{ type: String, ref: 'Comment' }]
+    reply : [{ type: String, ref: 'Reply' }]
 
     
 });

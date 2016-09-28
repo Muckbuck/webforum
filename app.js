@@ -33,6 +33,7 @@ require('./controllers/index.js')(app);
 require('./controllers/user.js')(app, passport); 
 require('./controllers/comment.js')(app, passport); 
 require('./controllers/thread.js')(app, passport); 
+require('./controllers/reply.js')(app, passport); 
 
 
 

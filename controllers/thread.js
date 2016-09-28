@@ -4,6 +4,7 @@ var isLoggedIn = require('../config/validation').isLoggedIn
 var userModel = require('../models/user');
 var threadModel = require('../models/thread');
 var commentModel = require('../models/comment');
+var replyModel = require('../models/reply');
 
 
 module.exports = function(app){
@@ -14,7 +15,9 @@ module.exports = function(app){
 
     app.get('/thread', function(req, res){
         var query = req.query.threadId;
-        var isAuth = req.isAuthenticated()
+        var commentQuery = req.query.commentId;
+        var isAuth = req.isAuthenticated();
+        var replyObj = {};
         threadModel.findOne({'_id': query}, function(err, thread){
             if(err)
                 return err;
@@ -26,11 +29,21 @@ module.exports = function(app){
             commentModel
             .find({ thread: query })
             .exec(function (err, comments) {
-            if (err) return handleError(err);
+                if (err) return handleError(err);
+               
+                    replyModel
+                    .find({ parent: commentQuery })
+                    .exec(function (err, replies) {
+                        if (err) return handleError(err);
+                    
+                    })
+
+               
             
-            res.render('displayThread', {parsedThread: parsedThread, comments: comments, isAuth: isAuth});
-            
+            res.render('displayThread', {parsedThread: parsedThread, comments: comments, isAuth: isAuth, replies: replyObj});
             })
+
+            
           
             
            

@@ -3,7 +3,7 @@ var commentModel = require('../models/comment');
 var isLoggedIn = require('../config/validation').isLoggedIn
 module.exports =  function(app){
 
-    app.post('/comment', function(req, res){
+    app.post('/comment', isLoggedIn, function(req, res){
         var authUser = req.user; 
         var id = req.query.commentId;
         var newModel = new commentModel();
@@ -20,7 +20,7 @@ module.exports =  function(app){
         });
 
     });
-
+    
 
 
 }

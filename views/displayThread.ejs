@@ -32,7 +32,17 @@
 
                             
                             <% for(var i=0; i<comments.length; i++) {%>
-                                <div class="well"><%= comments[i].commentBody %></div>
+                                <div class="well">
+                                    <%= comments[i].commentBody %> <button class="replyButton">reply</button>
+                                     <form action="/reply?parentId=<%= comments[i]._id %>" method="post">
+                                        <div class="form-group reply">
+                                            <textarea class="form-control" placeholder="Write a reply" name="replyBody" rows="5"></textarea>
+                                            <button type="submit" class="btn btn-lg">Submit</button>
+                                        </div>
+                                        
+                                    </form>  
+                                            
+                                </div>
                                 
                             <% } %>
                             
